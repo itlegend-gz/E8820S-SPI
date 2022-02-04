@@ -1,3 +1,5 @@
+THISDIR = $(shell pwd)
+go_version = 1.17.6
 # use host target
 CC        = gcc
 GCC       = gcc
@@ -15,9 +17,7 @@ SSTRIP_NAME = ELFkickers-3.1
 CFLAGS    = -Wall -O2
 LDFLAGS   =
 
-THISDIR = $(shell pwd)
-#N_PATH := $(THISDIR)/go/go/bin:$(PATH)
-#export PATH=$(N_PATH)
+
 
 -include $(LINUX_CONFIG)
 
@@ -26,20 +26,19 @@ all:go_build
 	mkdir -p sstrip
 	make -C $(SSTRIP_NAME)
 	make -C lzma
+ifeq ($(CONFIG_RT2880_ROOTFS_IN_FLASH),y)
 	make -C mksquashfs_xz
+endif
 
 go_build:
 	mkdir -p $(THISDIR)/go
-	( if [ ! -f $(THISDIR)/go/go1.17.6.linux-amd64.tar.gz ]; then \
-	curl --create-dirs -L https://studygolang.com/dl/golang/go1.17.6.linux-amd64.tar.gz -o $(THISDIR)/go/go1.17.6.linux-amd64.tar.gz ; \
-	if [ ! -f $(THISDIR)/go/go1.17.6.linux-amd64.tar.gz ]; then \
-	curl --create-dirs -L https://golang.google.cn/dl/go1.17.6.linux-amd64.tar.gz -o $(THISDIR)/go/go1.17.6.linux-amd64.tar.gz ; \
-	fi ; \
+	( if [ ! -f $(THISDIR)/go/go$(go_version).linux-amd64.tar.gz ]; then \
+	curl --create-dirs -L https://dl.google.com/go/go$(go_version).linux-amd64.tar.gz -o $(THISDIR)/go/go$(go_version).linux-amd64.tar.gz ; \
 	fi )
 	( if [ ! -d $(THISDIR)/go/go ]; then \
-	tar zxfv $(THISDIR)/go/go1.17.6.linux-amd64.tar.gz -C go ; \
+	tar zxfv $(THISDIR)/go/go$(go_version).linux-amd64.tar.gz -C go ; \
 	fi )
-	
+
 clean:
 	if [ -f $(SSTRIP_NAME)/Makefile ] ; then \
 		make -C $(SSTRIP_NAME) clean ; \
@@ -48,3 +47,4 @@ clean:
 	make -C mkimage clean
 	make -C lzma clean
 	make -C mksquashfs_xz clean
+	rm -rf $(THISDIR)/go/go
