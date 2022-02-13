@@ -22,11 +22,9 @@ jobs:
       matrix:
         include:
           - build_variant: "mt7621"
-            targets: "WR1200JS K2P DIR-878 CR660x JCG-Q20"
+            targets: "K2P"
           - build_variant: "mt7621-usb-1"
-            targets: "XY-C1 JCG-836PRO JCG-Y2"
-          - build_variant: "mt7621-usb-2"
-            targets: "MI-R3G JCG-AC860M NETGEAR-BZV MI-R3P RM2100"
+            targets: "RT-AC85P"
     steps:
       - uses: actions/checkout@v2
       - name: Prepare environment
@@ -42,6 +40,10 @@ jobs:
       - name: Start build
         run: |
           cd trunk
+          
+          rm -rf ./linux-4.4.x/drivers/net/wireless/mediatek
+          svn co https://github.com/hanwckf/padavan-4.4/tree/main/trunk/linux-4.4.x/drivers/net/wireless/mediatek ./linux-4.4.x/drivers/net/wireless/mediatek
+          
           mkdir -p ${images_dir}
           for m in $targets; do fakeroot ./build_firmware_ci $m; \
           if [ $? = 0 ]; then cp -f images/*.trx ${images_dir}/$m.trx; else exit 1; fi; \
