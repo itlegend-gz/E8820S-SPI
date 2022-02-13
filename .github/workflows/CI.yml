@@ -42,7 +42,7 @@ jobs:
           cd trunk
           
           rm -rf ./linux-4.4.x/drivers/net/wireless/mediatek
-          svn co https://github.com/hanwckf/padavan-4.4/tree/main/trunk/linux-4.4.x/drivers/net/wireless/mediatek ./linux-4.4.x/drivers/net/wireless/mediatek
+          svn co https://github.com/hanwckf/padavan-4.4/tree/main/trunk/linux-4.4.x/drivers/net/wireless/mediatek/ ./linux-4.4.x/drivers/net/wireless/mediatek
           
           mkdir -p ${images_dir}
           for m in $targets; do fakeroot ./build_firmware_ci $m; \
