@@ -579,7 +579,7 @@ reload_nat_modules(void)
 	int needed_pptp = 0;
 	int wan_nat_x = nvram_get_int("wan_nat_x");
 #if defined (USE_HW_NAT)
-	char hnat_param[80];
+	char hnat_param[32];
 	int hwnat_allow = is_hwnat_allow();
 	int hwnat_loaded = is_hwnat_loaded();
 #endif
@@ -662,18 +662,13 @@ reload_nat_modules(void)
 	}
 
 #if defined (USE_HW_NAT)
-	if (hwnat_allow)
-	{	if(!hwnat_loaded)
-		{snprintf(hnat_param, sizeof(hnat_param), "wan_vid=%d", get_vlan_vid_wan());
-		module_smart_load("hw_nat", hnat_param);}
-		int hw_nat_mode = nvram_get_int("hw_nat_mode");
+	if (hwnat_allow && !hwnat_loaded)
+	{
+		snprintf(hnat_param, sizeof(hnat_param), "wan_vid=%d", get_vlan_vid_wan());
+		module_smart_load("hw_nat", hnat_param);
 #if defined (USE_MT7615_AP) || defined (USE_MT7915_AP) || defined (USE_MT76X2_AP)
-		if (hw_nat_mode == 1)
-		{doSystem("iwpriv %s set hw_nat_register=%d", IFNAME_2G_MAIN, 1);
-		doSystem("iwpriv %s set hw_nat_register=%d", IFNAME_5G_MAIN, 1);}
-		else
-		{doSystem("iwpriv %s set hw_nat_register=%d", IFNAME_2G_MAIN, 0);
-		doSystem("iwpriv %s set hw_nat_register=%d", IFNAME_5G_MAIN, 0);}
+		doSystem("iwpriv %s set hw_nat_register=%d", IFNAME_2G_MAIN, 1);
+		doSystem("iwpriv %s set hw_nat_register=%d", IFNAME_5G_MAIN, 1);
 #endif
 	}
 
