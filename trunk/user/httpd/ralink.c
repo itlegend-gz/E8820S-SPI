@@ -1670,7 +1670,7 @@ ej_wl_scan_5g(int eid, webs_t wp, int argc, char **argv)
 
 	empty = "[\"\", \"\", \"\", \"\"]";
 	
-	#if defined (BOARD_MT7615_DBDC)
+#if defined (BOARD_MT7615_DBDC)
 	memset(data, 0, 32);
 	strcpy(data, "ClearSiteSurvey=1");
 	wrq.u.data.length = strlen(data)+1; 
@@ -1786,7 +1786,7 @@ ej_wl_scan_2g(int eid, webs_t wp, int argc, char **argv)
 
 	empty = "[\"\", \"\", \"\", \"\"]";
 
-	#if defined (BOARD_MT7615_DBDC)
+#if defined (BOARD_MT7615_DBDC)
 	memset(data, 0, 32);
 	strcpy(data, "ClearSiteSurvey=1");
 	wrq.u.data.length = strlen(data)+1; 
