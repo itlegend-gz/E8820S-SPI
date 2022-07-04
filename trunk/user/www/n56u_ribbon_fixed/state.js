@@ -421,7 +421,7 @@ if (found_app_aldriver()){
 	tabtitle[17] = new Array("", "<#menu5_36#>");
 }
 if (found_app_sqm()){
-	tabtitle[18] = new Array("", "QoS限速");
+	tabtitle[18] = new Array("", "#menu5_37#");
 }
 if (found_app_frp()){
 	tabtitle[19] = new Array("", "<#menu5_25#>");
@@ -530,7 +530,7 @@ if (found_app_aldriver()){
 } else menuL2_title.push("");
 
 if (found_app_sqm()){
-	menuL2_title.push("QoS限速");
+	menuL2_title.push("<#menu5_37#");
 } else menuL2_title.push("");
 
 if (found_app_frp()){
@@ -824,18 +824,14 @@ function show_loading_obj(){
 function submit_language(){
 	if($("select_lang").value != $("preferred_lang").value){
 		showLoading();
-		
 		with(document.titleForm){
 			action = "/start_apply.htm";
-			
 			if(location.pathname == "/")
 				current_page.value = "/index.asp";
 			else
 				current_page.value = location.pathname;
-			
 			preferred_lang.value = $("select_lang").value;
 			flag.value = "set_language";
-			
 			submit();
 		}
 	}
@@ -1143,7 +1139,6 @@ function checkDuplicateName(newname, targetArray){
 	var existing_string = targetArray.join(',');
 	existing_string = ","+existing_string+",";
 	var newstr = ","+trim(newname)+",";
-	
 	var re = new RegExp(newstr, "gi");
 	var matchArray = existing_string.match(re);
 	
