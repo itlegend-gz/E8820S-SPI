@@ -1394,7 +1394,7 @@ VOID FT_R1KHInfoMaintenance(
 				pEntryTmp = pEntry->pNext;
 				delEntryList(&pFtTab->FT_R1khEntryTab[HashIdx],
 								(RT_LIST_ENTRY *)pEntry);
-//				os_free_mem(pAd, pEntry);
+				os_free_mem(pAd, pEntry);
 				pFtTab->FT_R1khEntryTabSize--;
 				pEntry = pEntryTmp;
 			}
