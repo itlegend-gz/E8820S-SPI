@@ -1,5 +1,5 @@
 #WR1200JS
-name: Build Padavan
+name: wr1200js
 
 on: 
   release:
