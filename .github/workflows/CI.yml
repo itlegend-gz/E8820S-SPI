@@ -1,36 +1,36 @@
 #WR1200JS
-name: wr1200js
+name: 名称：K2P-USB
 
 on: 
   release:
-    types: [published]
+    types: [    类型：[已发布]]
   push:
     tags:
     - 'v*'
-  #  branches: 
-  #    - master
+  # 分支机构：#  branches: 
+  ＃ - 掌握#    - master
 #  schedule:
 #    - cron: 0 8 * * 5
   watch:
-    types: [started]
+    types: [    类型：[开始]]
 
 jobs:
   build:
-    runs-on: ubuntu-20.04
-    if: github.event.repository.owner.id == github.event.sender.id
+    runs-on:     运行系统：ubuntu-20.04
+    if:     如果： github.event.repository.owner.id == github.event.sender.id
 
     steps:
-    - name: Checkout
-      uses: actions/checkout@master
-    - name: Initialization environment
+    - name:     - 名称：结账
+      uses:       使用：actions/checkout@master
+    - name:     - name: 初始化环境
       env:
-        DEBIAN_FRONTEND: noninteractive
+        DEBIAN_FRONTEND:         DEBIAN_FRONTEND：非交互式
       run: |
         sudo apt-get update
         sudo apt-get -y install unzip libtool-bin curl cmake gperf gawk flex bison nano xxd fakeroot \
         cpio git python-docutils gettext automake autopoint texinfo build-essential help2man \
         pkg-config zlib1g-dev libgmp3-dev libmpc-dev libmpfr-dev libncurses5-dev libltdl-dev wget
-    - name: Clone source code
+    - name:     - 名称：克隆源代码
       run: |
         git clone --depth=1 https://github.com/h70076222/padavan-4.444.git /opt/padavan
         cd /opt/padavan/toolchain-mipsel
@@ -39,7 +39,7 @@ jobs:
     
     - name: Build Firmware
       env:
-        TNAME: WR1200JS
+        TNAME: K2P-USB
       run: |
         cd /opt/padavan/trunk
         if [ ! -f configs/templates/$TNAME.config ] ; then
