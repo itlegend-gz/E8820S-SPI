@@ -723,10 +723,10 @@ typedef struct os_cookie	* POS_COOKIE;
 #define PRINT_MAC(addr)	\
 	addr[0], addr[1], addr[2], addr[3], addr[4], addr[5]
 
-#ifdef DBG
 extern ULONG		RTDebugLevel;
 extern ULONG		RTDebugFunc;
 
+#ifdef DBG
 #define DBGPRINT_RAW(Level, Fmt)    \
 do{                                   \
 	ULONG __gLevel = (Level) & 0xff;\
