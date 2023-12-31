@@ -195,6 +195,8 @@ if [ "$CONFIG_FIRMWARE_INCLUDE_SQM" = "y" ]; then
 	func_enable_kernel_param "CONFIG_NET_SCH_CODEL" "m"
 	func_enable_kernel_param "CONFIG_NET_ACT_IPT" "m"
 	func_enable_kernel_param "CONFIG_IFB"
+else
+	func_enable_kernel_param "CONFIG_NF_CONNTRACK_EVENTS"
 fi
 #cpu超频
 if [ "$CONFIG_FIRMWARE_INCLUDE_OC" = "y" ]; then	
