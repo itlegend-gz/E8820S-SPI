@@ -33,7 +33,7 @@ This project is based on original rt-n56u with latest mtk 4.4.198 kernel, which 
   - XY-C1
 
 - Compilation step
-  - Install dependencies
+  - 安装依赖项
     ```sh
     # Debian/Ubuntu
     sudo apt install unzip libtool-bin curl cmake gperf gawk flex bison nano xxd \
