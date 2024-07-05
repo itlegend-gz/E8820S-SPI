@@ -39,31 +39,10 @@
 			gpios = <&gpio0 8 GPIO_ACTIVE_LOW>;
 			linux,code = <KEY_WPS_BUTTON>;
 		};
-		
-		wifi {
-			label = "wifi";
-			gpios = <&gpio0 10 GPIO_ACTIVE_LOW>;
-			linux,code = <KEY_RFKILL>;
-		};
-	};
-	
-};
 
-&bch {
-	status = "okay";
+	};
 };
 
 &pcie {
-	status = "okay";
-	reset-gpios = <&gpio0 19 1>, <&gpio0 4 1>;
-	reset-gpio-names = "pcie0", "pcie1";
-
-};
-
-&xhci {
-	status = "okay";
-};
-
-&u3phy1 {
 	status = "okay";
 };
